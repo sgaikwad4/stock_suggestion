@@ -8,7 +8,7 @@ def get_stock_data():
     try:
         stock = yf.Ticker(ticker)
         data = stock.history(period="1mo")
-
+    
         price = data["Close"]
         round_price = round(price,2).iloc[-1]
         moving_avg = round(price.rolling(10).mean().iloc[-1], 2)
@@ -16,9 +16,8 @@ def get_stock_data():
         print(f"${round_price}")
         print(f"10-day average: ${moving_avg}")
     
-    except ValueError:
-        print("No ")
-    
+    except:
+        print("No data found")    
 # Get ticker symbol
 ticker = input("Enter a ticker symbol: ").strip().upper()
 
