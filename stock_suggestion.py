@@ -7,7 +7,7 @@ import yfinance as yf
 def get_stock_data():
     try:
         stock = yf.Ticker(ticker)
-        data = stock.history(period="1d")
+        data = stock.history(period="1mo")
 
         price = data["Close"]
         round_price = round(price,2).iloc[-1]
