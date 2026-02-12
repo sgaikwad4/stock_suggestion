@@ -4,7 +4,7 @@ This program will take market data and suggest an action (buy, sell. or hold)
 import yfinance as yf
     
 # get stock data
-def get_stock_data():
+def get_stock_data(ticker):
     try:
         stock = yf.Ticker(ticker)
         data = stock.history(period="1mo")
@@ -18,12 +18,23 @@ def get_stock_data():
     
     except:
         print("No data found")    
-# Get ticker symbol
-ticker = input("Enter a ticker symbol: ").strip().upper()
 
 # calculate and give suggestion
-
 def calculation():
-    pass
-
-get_stock_data()
+    if round_price > moving_avg:
+        print("Suggestion: Buy")
+        
+    elif round_price < moving_avg:
+        print("Suggestion: Sell")
+    
+    else:
+        print("Suggestion: Hold")
+    
+    
+def main():
+    # Get ticker symbol
+    ticker = input("Enter a ticker symbol: ").strip().upper()
+    get_stock_data(ticker)
+    
+if __name__ == "__main__":
+    main()
