@@ -16,13 +16,13 @@ def get_stock_data(ticker):
         return round_price, moving_avg
     
     except:
-        print("No data found")    
+        return None, None
 
 # calculate and give suggestion
 def calculation(round_price, moving_avg):
     
-    print(f"${round_price}")
     print(f"10-day average: ${moving_avg}")
+    print(f"${round_price}")
     
     if round_price > moving_avg:
         print("Suggestion: Buy")
@@ -38,6 +38,11 @@ def main():
     # Get ticker symbol
     ticker = input("Enter a ticker symbol: ").strip().upper()
     round_price, moving_avg = get_stock_data(ticker)
-    calculation(round_price, moving_avg)
+    
+    if round_price is None:
+        print("No data found for that ticker")
+    else:    
+        calculation(round_price, moving_avg)
+        
 if __name__ == "__main__":
     main()
