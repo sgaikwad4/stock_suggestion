@@ -13,14 +13,17 @@ def get_stock_data(ticker):
         round_price = round(price,2).iloc[-1]
         moving_avg = round(price.rolling(10).mean().iloc[-1], 2)
         
-        print(f"${round_price}")
-        print(f"10-day average: ${moving_avg}")
+        return round_price, moving_avg
     
     except:
         print("No data found")    
 
 # calculate and give suggestion
-def calculation():
+def calculation(round_price, moving_avg):
+    
+    print(f"${round_price}")
+    print(f"10-day average: ${moving_avg}")
+    
     if round_price > moving_avg:
         print("Suggestion: Buy")
         
@@ -34,7 +37,7 @@ def calculation():
 def main():
     # Get ticker symbol
     ticker = input("Enter a ticker symbol: ").strip().upper()
-    get_stock_data(ticker)
-    
+    round_price, moving_avg = get_stock_data(ticker)
+    calculation(round_price, moving_avg)
 if __name__ == "__main__":
     main()
