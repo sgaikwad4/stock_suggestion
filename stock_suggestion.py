@@ -35,14 +35,17 @@ def calculation(round_price, moving_avg):
     
     
 def main():
-    # Get ticker symbol
-    ticker = input("Enter a ticker symbol: ").strip().upper()
-    round_price, moving_avg = get_stock_data(ticker)
-    
-    if round_price is None:
-        print("No data found for that ticker")
-    else:    
-        calculation(round_price, moving_avg)
+    while True:
+        # Get ticker symbol
+        ticker = input("Enter a ticker symbol: ").strip().upper()
+        round_price, moving_avg = get_stock_data(ticker)
+        
+        if round_price is None:
+            print("No data found for that ticker")
+        else:    
+            calculation(round_price, moving_avg)
+            break
+        
         
 if __name__ == "__main__":
     main()
